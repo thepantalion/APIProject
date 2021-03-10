@@ -1,0 +1,853 @@
+==46396== Memcheck, a memory error detector
+==46396== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==46396== Using Valgrind-3.17.0.GIT-e0af3eb597-20200803 and LibVEX; rerun with -h for copyright info
+==46396== Command: ./timeforachange
+==46396== Parent PID: 46320
+==46396== 
+--46396-- 
+--46396-- Valgrind options:
+--46396--    --leak-check=full
+--46396--    --show-leak-kinds=all
+--46396--    --track-origins=yes
+--46396--    --verbose
+--46396--    --log-file=valgrind-out.txt
+--46396-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--46396--   Darwin Kernel Version 19.6.0: Sun Jul  5 00:43:10 PDT 2020; root:xnu-6153.141.1~9/RELEASE_X86_64
+--46396-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--46396-- Page sizes: currently 4096, max supported 4096
+--46396-- Valgrind library directory: /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind
+--46396-- ./timeforachange (rx at 0x100000000, rw at 0x100002000)
+--46396--    reading syms   from primary file (17 60)
+--46396--    dSYM= ./timeforachange.dSYM/Contents/Resources/DWARF/timeforachange
+--46396--    reading dwarf3 from dsyms file
+--46396-- /usr/lib/dyld (rx at 0x100005000, rw at 0x100097000)
+--46396--    reading syms   from primary file (5 2729)
+--46396-- Scheduler: using generic scheduler lock implementation.
+--46396-- Reading suppressions file: /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp
+==46396== embedded gdbserver: reading from /var/folders/33/200dfk4n5knb05d9w61gtcc00000gn/T//vgdb-pipe-from-vgdb-to-46396-by-pantalion-on-???
+==46396== embedded gdbserver: writing to   /var/folders/33/200dfk4n5knb05d9w61gtcc00000gn/T//vgdb-pipe-to-vgdb-from-46396-by-pantalion-on-???
+==46396== embedded gdbserver: shared mem   /var/folders/33/200dfk4n5knb05d9w61gtcc00000gn/T//vgdb-pipe-shared-mem-vgdb-46396-by-pantalion-on-???
+==46396== 
+==46396== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==46396== don't want to do, unless you know exactly what you're doing,
+==46396== or are doing some strange experiment):
+==46396==   /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/../../bin/vgdb --pid=46396 ...command...
+==46396== 
+==46396== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==46396==   /path/to/gdb ./timeforachange
+==46396== and then give GDB the following command
+==46396==   target remote | /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/../../bin/vgdb --pid=46396
+==46396== --pid is optional if only one valgrind process is running
+==46396== 
+--46396-- REDIR: 0x1000571c0 (dyld:strcmp) redirected to 0x25805865d (???)
+--46396-- REDIR: 0x100051494 (dyld:arc4random) redirected to 0x2580586fb (???)
+--46396-- REDIR: 0x1000565a0 (dyld:strlen) redirected to 0x25805862c (???)
+--46396-- REDIR: 0x1000574c0 (dyld:strcpy) redirected to 0x258058679 (???)
+--46396-- REDIR: 0x10005463a (dyld:strcat) redirected to 0x25805863d (???)
+--46396-- REDIR: 0x10005639a (dyld:strlcat) redirected to 0x258058696 (???)
+--46396-- /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x10010a000, rw at 0x10010e000)
+--46396--    reading syms   from primary file (3 48)
+--46396--    dSYM= /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--46396-- /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x100110000, rw at 0x100117000)
+--46396--    reading syms   from primary file (75 57)
+--46396--    dSYM= /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--46396-- /usr/lib/libSystem.B.dylib (rx at 0x10011c000, rw at 0x10011e000)
+--46396--    reading syms   from primary file (29 8)
+--46396-- /usr/lib/system/libcache.dylib (rx at 0x100126000, rw at 0x10012c000)
+--46396--    reading syms   from primary file (32 29)
+--46396-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x100133000, rw at 0x10013f000)
+--46396--    reading syms   from primary file (241 173)
+--46396-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x10014f000, rw at 0x100157000)
+--46396--    reading syms   from primary file (505 8)
+--46396-- /usr/lib/system/libcopyfile.dylib (rx at 0x100167000, rw at 0x100171000)
+--46396--    reading syms   from primary file (11 38)
+--46396-- /usr/lib/system/libcorecrypto.dylib (rx at 0x100179000, rw at 0x10020c000)
+--46396--    reading syms   from primary file (586 846)
+--46396-- /usr/lib/system/libdispatch.dylib (rx at 0x10022c000, rw at 0x10026d000)
+--46396--    reading syms   from primary file (328 1607)
+--46396-- /usr/lib/system/libdyld.dylib (rx at 0x1002aa000, rw at 0x1002e1000)
+--46396--    reading syms   from primary file (119 1467)
+--46396-- /usr/lib/system/libkeymgr.dylib (rx at 0x10030a000, rw at 0x10030b000)
+--46396--    reading syms   from primary file (11 2)
+--46396-- /usr/lib/system/libmacho.dylib (rx at 0x10031a000, rw at 0x100320000)
+--46396--    reading syms   from primary file (105 2)
+--46396-- /usr/lib/system/libquarantine.dylib (rx at 0x100328000, rw at 0x10032b000)
+--46396--    reading syms   from primary file (88 12)
+--46396-- /usr/lib/system/libremovefile.dylib (rx at 0x100333000, rw at 0x100335000)
+--46396--    reading syms   from primary file (12 8)
+--46396-- /usr/lib/system/libsystem_asl.dylib (rx at 0x10033c000, rw at 0x100354000)
+--46396--    reading syms   from primary file (219 234)
+--46396-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x100364000, rw at 0x100365000)
+--46396--    reading syms   from primary file (21 8)
+--46396-- /usr/lib/system/libsystem_c.dylib (rx at 0x10036c000, rw at 0x1003f4000)
+--46396--    reading syms   from primary file (1346 892)
+--46396-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x100424000, rw at 0x100428000)
+--46396--    reading syms   from primary file (36 68)
+--46396-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x100431000, rw at 0x100435000)
+--46396--    reading syms   from primary file (14 47)
+--46396-- /usr/lib/system/libsystem_darwin.dylib (rx at 0x10043d000, rw at 0x100446000)
+--46396--    reading syms   from primary file (63 562)
+--46396-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x100455000, rw at 0x10045d000)
+--46396--    reading syms   from primary file (40 26)
+--46396-- /usr/lib/system/libsystem_featureflags.dylib (rx at 0x100465000, rw at 0x100467000)
+--46396--    reading syms   from primary file (1 12)
+--46396-- /usr/lib/system/libsystem_info.dylib (rx at 0x10046e000, rw at 0x1004bc000)
+--46396--    reading syms   from primary file (427 714)
+--46396-- /usr/lib/system/libsystem_m.dylib (rx at 0x1004d4000, rw at 0x10051c000)
+--46396--    reading syms   from primary file (811 1)
+--46396-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x10052d000, rw at 0x100555000)
+--46396--    reading syms   from primary file (98 470)
+--46396-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x100565000, rw at 0x100573000)
+--46396--    reading syms   from primary file (118 242)
+--46396-- /usr/lib/system/libsystem_notify.dylib (rx at 0x100583000, rw at 0x10058d000)
+--46396--    reading syms   from primary file (23 1)
+--46396-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x100595000, rw at 0x10059a000)
+--46396--    reading syms   from primary file (112 23)
+--46396-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x1005a3000, rw at 0x1005a6000)
+--46396--    reading syms   from primary file (5 20)
+--46396-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x1005ad000, rw at 0x1005da000)
+--46396--    reading syms   from primary file (1361 230)
+--46396-- /usr/lib/system/libsystem_platform.dylib (rx at 0x1005f9000, rw at 0x100602000)
+--46396--    reading syms   from primary file (168 103)
+--46396-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x10060c000, rw at 0x100617000)
+--46396--    reading syms   from primary file (189 143)
+--46396-- /usr/lib/system/libsystem_symptoms.dylib (rx at 0x100624000, rw at 0x10062c000)
+--46396--    reading syms   from primary file (10 86)
+--46396-- /usr/lib/system/libsystem_trace.dylib (rx at 0x100634000, rw at 0x10064b000)
+--46396--    reading syms   from primary file (131 274)
+--46396-- /usr/lib/system/libunwind.dylib (rx at 0x10065c000, rw at 0x100662000)
+--46396--    reading syms   from primary file (102 52)
+--46396-- /usr/lib/system/libxpc.dylib (rx at 0x10066b000, rw at 0x1006a1000)
+--46396--    reading syms   from primary file (627 1467)
+--46396-- /usr/lib/libobjc.A.dylib (rx at 0x1006cf000, rw at 0x100703000)
+--46396--    reading syms   from primary file (382 771)
+--46396-- /usr/lib/libc++abi.dylib (rx at 0x100727000, rw at 0x10073d000)
+--46396--    reading syms   from primary file (366 704)
+--46396-- /usr/lib/libc++.1.dylib (rx at 0x10075b000, rw at 0x1007ae000)
+--46396--    reading syms   from primary file (2088 1160)
+--46396-- REDIR: 0x1005fa3a0 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x1001138fb (_platform_memcmp)
+--46396-- REDIR: 0x1005f9c00 (libsystem_platform.dylib:_platform_strncmp) redirected to 0x100113295 (_platform_strncmp)
+--46396-- REDIR: 0x1005f9800 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x10011330f (_platform_strcmp)
+--46396-- REDIR: 0x10052dce0 (libsystem_malloc.dylib:malloc) redirected to 0x1001115c0 (malloc)
+--46396-- REDIR: 0x10052fec1 (libsystem_malloc.dylib:calloc) redirected to 0x100111bd6 (calloc)
+--46396-- REDIR: 0x10052fd67 (libsystem_malloc.dylib:realloc) redirected to 0x100111f54 (realloc)
+--46396-- REDIR: 0x100530087 (libsystem_malloc.dylib:malloc_default_zone) redirected to 0x100112909 (malloc_default_zone)
+--46396-- REDIR: 0x10052dd12 (libsystem_malloc.dylib:malloc_zone_malloc) redirected to 0x100111828 (malloc_zone_malloc)
+--46396-- REDIR: 0x10052fef6 (libsystem_malloc.dylib:malloc_zone_calloc) redirected to 0x100111dc2 (malloc_zone_calloc)
+--46396-- REDIR: 0x10053008f (libsystem_malloc.dylib:malloc_zone_from_ptr) redirected to 0x10011294a (malloc_zone_from_ptr)
+--46396-- REDIR: 0x10052e9b1 (libsystem_malloc.dylib:free) redirected to 0x10011199c (free)
+--46396-- REDIR: 0x1005fa300 (libsystem_platform.dylib:_platform_strchr$VARIANT$Haswell) redirected to 0x100112bbd (_platform_strchr$VARIANT$Haswell)
+--46396-- REDIR: 0x1005fa1a0 (libsystem_platform.dylib:_platform_memchr$VARIANT$Haswell) redirected to 0x100113390 (_platform_memchr$VARIANT$Haswell)
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC015: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000016FF: main (timeForAChange.c:329)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC01D: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000016FF: main (timeForAChange.c:329)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC02B: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000016FF: main (timeForAChange.c:329)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC015: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000017D3: main (timeForAChange.c:340)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC01D: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000017D3: main (timeForAChange.c:340)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC02B: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000017D3: main (timeForAChange.c:340)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9E92: _platform_strlen (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A631B: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A756C: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A778A: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x100113399: _platform_memchr$VARIANT$Haswell (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1003A77B4: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1001133A9: _platform_memchr$VARIANT$Haswell (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1003A77B4: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A7825: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9910: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9916: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F994B: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Use of uninitialised value of size 8
+==46396==    at 0x1005F994D: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9957: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F996D: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9987: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Use of uninitialised value of size 8
+==46396==    at 0x1005F9995: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A7866: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A50B3: __sflush (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A786F: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Syscall param write(count) contains uninitialised byte(s)
+==46396==    at 0x1005B0E66: write$NOCANCEL (in /usr/lib/system/libsystem_kernel.dylib)
+==46396==    by 0x1003AC36F: _swrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A50C6: __sflush (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A786F: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A50D8: __sflush (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A786F: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A7890: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F991F: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9A24: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Use of uninitialised value of size 8
+==46396==    at 0x1005F9A80: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Use of uninitialised value of size 8
+==46396==    at 0x1005F9A9C: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1000019C4: main (timeForAChange.c:384)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Invalid read of size 8
+==46396==    at 0x100001CAF: main (timeForAChange.c:423)
+==46396==  Address 0x100810a60 is 1,056 bytes inside a block of size 1,064 free'd
+==46396==    at 0x100111A0D: free (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1000013E3: RBDelete (timeForAChange.c:256)
+==46396==    by 0x100001CA7: main (timeForAChange.c:422)
+==46396==  Block was alloc'd at
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Invalid read of size 8
+==46396==    at 0x100001CCA: main (timeForAChange.c:423)
+==46396==  Address 0x100810a60 is 1,056 bytes inside a block of size 1,064 free'd
+==46396==    at 0x100111A0D: free (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1000013E3: RBDelete (timeForAChange.c:256)
+==46396==    by 0x100001CA7: main (timeForAChange.c:422)
+==46396==  Block was alloc'd at
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== Invalid read of size 4
+==46396==    at 0x1000018A0: main (timeForAChange.c:366)
+==46396==  Address 0x100810ab0 is 0 bytes inside a block of size 1,064 free'd
+==46396==    at 0x100111A0D: free (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1000013E3: RBDelete (timeForAChange.c:256)
+==46396==    by 0x100001CA7: main (timeForAChange.c:422)
+==46396==  Block was alloc'd at
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== HEAP SUMMARY:
+==46396==     in use at exit: 22,179 bytes in 164 blocks
+==46396==   total heap usage: 183 allocs, 19 frees, 32,243 bytes allocated
+==46396== 
+==46396== Searching for pointers to 164 not-freed blocks
+==46396== Checked 9,165,552 bytes
+==46396== 
+==46396== 4,096 bytes in 1 blocks are still reachable in loss record 38 of 39
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1003A8367: __smakebuf (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003AB8A6: __srefill0 (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003AB994: __srefill (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A54EB: fgets (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001637: main (timeForAChange.c:318)
+==46396== 
+==46396== 4,096 bytes in 1 blocks are still reachable in loss record 39 of 39
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1003A8367: __smakebuf (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003BBC4D: __swsetup (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A7596: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396== 
+==46396== LEAK SUMMARY:
+==46396==    definitely lost: 0 bytes in 0 blocks
+==46396==    indirectly lost: 0 bytes in 0 blocks
+==46396==      possibly lost: 0 bytes in 0 blocks
+==46396==    still reachable: 8,192 bytes in 2 blocks
+==46396==         suppressed: 13,987 bytes in 162 blocks
+==46396== 
+==46396== ERROR SUMMARY: 383 errors from 33 contexts (suppressed: 8 from 8)
+==46396== 
+==46396== 1 errors in context 1 of 33:
+==46396== Use of uninitialised value of size 8
+==46396==    at 0x1005F9995: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 1 errors in context 2 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9987: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 1 errors in context 3 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F996D: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 1 errors in context 4 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9957: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 1 errors in context 5 of 33:
+==46396== Use of uninitialised value of size 8
+==46396==    at 0x1005F994D: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 1 errors in context 6 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F994B: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 1 errors in context 7 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC02B: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000017D3: main (timeForAChange.c:340)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== 
+==46396== 1 errors in context 8 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC01D: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000017D3: main (timeForAChange.c:340)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== 
+==46396== 1 errors in context 9 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC015: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000017D3: main (timeForAChange.c:340)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== 
+==46396== 1 errors in context 10 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC02B: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000016FF: main (timeForAChange.c:329)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== 
+==46396== 1 errors in context 11 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC01D: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000016FF: main (timeForAChange.c:329)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== 
+==46396== 1 errors in context 12 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003CC015: strtol_l (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1000016FF: main (timeForAChange.c:329)
+==46396==  Uninitialised value was created by a stack allocation
+==46396==    at 0x100006025: _dyld_start (in /usr/lib/dyld)
+==46396== 
+==46396== 
+==46396== 2 errors in context 13 of 33:
+==46396== Invalid read of size 8
+==46396==    at 0x100001CCA: main (timeForAChange.c:423)
+==46396==  Address 0x100810a60 is 1,056 bytes inside a block of size 1,064 free'd
+==46396==    at 0x100111A0D: free (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1000013E3: RBDelete (timeForAChange.c:256)
+==46396==    by 0x100001CA7: main (timeForAChange.c:422)
+==46396==  Block was alloc'd at
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 2 errors in context 14 of 33:
+==46396== Invalid read of size 4
+==46396==    at 0x1000018A0: main (timeForAChange.c:366)
+==46396==  Address 0x100810ab0 is 0 bytes inside a block of size 1,064 free'd
+==46396==    at 0x100111A0D: free (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1000013E3: RBDelete (timeForAChange.c:256)
+==46396==    by 0x100001CA7: main (timeForAChange.c:422)
+==46396==  Block was alloc'd at
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 2 errors in context 15 of 33:
+==46396== Use of uninitialised value of size 8
+==46396==    at 0x1005F9A9C: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 2 errors in context 16 of 33:
+==46396== Use of uninitialised value of size 8
+==46396==    at 0x1005F9A80: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 2 errors in context 17 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9A24: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 2 errors in context 18 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F991F: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 19 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A7890: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 20 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A50D8: __sflush (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A786F: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 21 of 33:
+==46396== Syscall param write(count) contains uninitialised byte(s)
+==46396==    at 0x1005B0E66: write$NOCANCEL (in /usr/lib/system/libsystem_kernel.dylib)
+==46396==    by 0x1003AC36F: _swrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A50C6: __sflush (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A786F: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 22 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A50B3: __sflush (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A786F: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 23 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A7866: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 24 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9916: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 25 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9910: _platform_memmove$VARIANT$Haswell (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A7834: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 26 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A7825: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 27 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x100113399: _platform_memchr$VARIANT$Haswell (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1003A77B4: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 28 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A778A: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 29 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1003A756C: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 3 errors in context 30 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1005F9E92: _platform_strlen (in /usr/lib/system/libsystem_platform.dylib)
+==46396==    by 0x1003A631B: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 4 errors in context 31 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1000019C4: main (timeForAChange.c:384)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 5 errors in context 32 of 33:
+==46396== Invalid read of size 8
+==46396==    at 0x100001CAF: main (timeForAChange.c:423)
+==46396==  Address 0x100810a60 is 1,056 bytes inside a block of size 1,064 free'd
+==46396==    at 0x100111A0D: free (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1000013E3: RBDelete (timeForAChange.c:256)
+==46396==    by 0x100001CA7: main (timeForAChange.c:422)
+==46396==  Block was alloc'd at
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+==46396== 
+==46396== 314 errors in context 33 of 33:
+==46396== Conditional jump or move depends on uninitialised value(s)
+==46396==    at 0x1001133A9: _platform_memchr$VARIANT$Haswell (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x1003A77B4: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x1003A6355: fputs (in /usr/lib/system/libsystem_c.dylib)
+==46396==    by 0x100001DEC: main (timeForAChange.c:446)
+==46396==  Uninitialised value was created by a heap allocation
+==46396==    at 0x100111635: malloc (in /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==46396==    by 0x100000808: newNode (timeForAChange.c:28)
+==46396==    by 0x100001874: main (timeForAChange.c:365)
+==46396== 
+--46396-- 
+--46396-- used_suppression:      3 OSX1015:dyld-4 /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp:751 suppressed: 4,152 bytes in 3 blocks
+--46396-- used_suppression:      1 OSX1015:Leak02-objc /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp:812 suppressed: 2,048 bytes in 1 blocks
+--46396-- used_suppression:     17 OSX1015:dyld-7 /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp:781 suppressed: 2,560 bytes in 74 blocks
+--46396-- used_suppression:     15 OSX1015:dyld-8 /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp:791 suppressed: 4,963 bytes in 81 blocks
+--46396-- used_suppression:      1 OSX1015:dyld-5 /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp:761 suppressed: 264 bytes in 3 blocks
+--46396-- used_suppression:      1 OSX1015:dyld-1 /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp:726
+--46396-- used_suppression:      2 OSX1015:dyld-3 /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp:742
+--46396-- used_suppression:      1 OSX1015:dyld-2 /usr/local/Cellar/valgrind/HEAD-e0af3eb/lib/valgrind/default.supp:733
+==46396== 
+==46396== ERROR SUMMARY: 383 errors from 33 contexts (suppressed: 8 from 8)

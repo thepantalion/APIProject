@@ -1,0 +1,15 @@
+1,6c
+1. Ciao come ti chiami?
+2. Sei bello.
+3. Usciamo.
+4. Che ne dici?
+5. Gnam.
+6. Assolutamente sì.
+.
+7,9c
+7. Grindr?
+8. Come ti chiami?
+9. Cosa ci fai qui?
+.
+1,10p
+q
